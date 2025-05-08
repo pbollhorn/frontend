@@ -9,9 +9,12 @@ function App() {
 
   const logout = () => {
     /*TODO*/
+    facade.logout();
+    setLoggedIn(false);
   };
   const login = (user, pass) => {
     /*TODO*/
+    facade.login(user, pass).then((res) => setLoggedIn(true));
   };
 
   return (

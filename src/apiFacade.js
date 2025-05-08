@@ -12,8 +12,30 @@ function handleHttpErrors(res) {
  here (REMEMBER to uncomment in the returned 
  object when you do)*/
 
+const setToken = (token) => {
+  localStorage.setItem("jwtToken", token);
+};
+const getToken = () => {
+  return localStorage.getItem("jwtToken");
+};
+const loggedIn = () => {
+  const loggedIn = getToken() != null;
+  return loggedIn;
+};
+const logout = () => {
+  localStorage.removeItem("jwtToken");
+};
+
 const login = (user, password) => {
-  /*TODO*/
+  const options = makeOptions("POST", false, {
+    username: user,
+    password: password,
+  });
+  return fetch(BASE_URL + LOGIN_ENDPOINT, options)
+    .then(handleHttpErrors)
+    .then((res) => {
+      setToken(res.token);
+    });
 };
 
 const fetchData = () => {
@@ -42,8 +64,8 @@ const facade = {
   //setToken,
   //getToken,
   //loggedIn,
-  //login,
-  //logout,
+  login,
+  logout,
   fetchData,
 };
 
