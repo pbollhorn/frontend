@@ -40,6 +40,8 @@ const login = (user, password) => {
 
 const fetchData = () => {
   /*TODO */
+  const options = makeOptions("GET", true); //True add's the token
+  return fetch(BASE_URL + "hotels", options).then(handleHttpErrors);
 };
 
 const makeOptions = (method, addToken, body) => {
@@ -61,9 +63,9 @@ const makeOptions = (method, addToken, body) => {
 
 const facade = {
   makeOptions,
-  //setToken,
-  //getToken,
-  //loggedIn,
+  setToken,
+  getToken,
+  loggedIn,
   login,
   logout,
   fetchData,

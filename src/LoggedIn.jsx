@@ -6,6 +6,7 @@ function LoggedIn({ loggedIn }) {
 
   useEffect(() => {
     /*TODO*/
+    facade.fetchData().then((data) => setDataFromServer(data));
   }, []);
 
   return (
